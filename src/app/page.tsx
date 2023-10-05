@@ -1,7 +1,11 @@
+'use client';
+
 function Home() {
   return (
-    <h1>Page</h1>
-  )
+    <div className="flex">
+      <h1>Page</h1>
+    </div>
+  );
 }
 
-export default Home
+export default Home;
