@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex-col justify-center items-center bg-primary-gray w-full h-screen">
           <Header></Header>
-          <div className="flex justify-center items-center h-3/5">
+          <div className="flex justify-center items-center h-[65%]">
             {children}
           </div>
           <Keyboard></Keyboard>

@@ -3,5 +3,6 @@
   "editor.tabSize": 2,
   "files.autoSave": "onFocusChange",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "files.eol": "\n"
+  "files.eol": "\n",
+  "css.lint.unknownAtRules": "ignore"
 }
