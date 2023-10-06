@@ -1,12 +1,7 @@
 import type { Config } from 'tailwindcss';
-import colors from 'tailwindcss/colors';
 
 const config: Config = {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       backgroundImage: {
@@ -32,18 +27,10 @@ const config: Config = {
         'key-base': '1.45em',
         'key-enter': '1.3em',
       },
-    },
-    colors: {
-      'primary-gray': '#6E5C62',
-      key: '#4C4347',
-      transparent: 'transparent',
-      current: 'currentColor',
-      black: colors.black,
-      white: colors.white,
-      gray: colors.gray,
-      emerald: colors.emerald,
-      indigo: colors.indigo,
-      yellow: colors.yellow,
+      colors: {
+        'primary-gray': '#6E5C62',
+        key: '#4C4347',
+      },
     },
   },
   plugins: [],
