@@ -3,7 +3,7 @@
 function Home() {
   return (
     <div className="flex">
-      <h1>Home</h1>
+      <h1 id="home"></h1>
     </div>
   );
 }
