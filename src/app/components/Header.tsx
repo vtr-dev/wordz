@@ -1,7 +1,7 @@
 function Header() {
   return (
-    <div className="flex justify-center h-[10%] bg-indigo-500">
-      <div>HEADER</div>
+    <div className="header">
+      <div className="title">WORDZ</div>
     </div>
   );
 }
