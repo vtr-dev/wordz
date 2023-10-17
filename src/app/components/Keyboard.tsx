@@ -1,4 +1,5 @@
 'use client';
+
 import { keys } from '@/utils/keys';
 import Key from './Key';
 import { script } from '../../script';
