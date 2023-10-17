@@ -1,9 +1,9 @@
-'use client';
+import Main from './components/Content';
 
 function Home() {
   return (
-    <div className="flex">
-      <h1 id="home"></h1>
+    <div>
+      <Main></Main>
     </div>
   );
 }
