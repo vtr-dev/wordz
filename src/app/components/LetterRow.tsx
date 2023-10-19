@@ -1,17 +1,23 @@
 'use client';
-
 import React from 'react';
-import MainLetter from './Letter';
+import Letter from './Letter';
 
-function MainRow({ children }: { children?: React.ReactNode }) {
+function LetterRow({
+  children,
+  active,
+}: {
+  children?: React.ReactNode;
+  active?: boolean;
+}) {
   const letterArray = typeof children === 'string' ? children.split('') : [];
 
   return (
-    <div className="flex flex-row gap-1">
+    <div className={`flex${active ? ' flex-row gap-1' : ''}`}>
       {letterArray.map((letter, idx) => (
-        <MainLetter key={idx}>{letter}</MainLetter>
+        <Letter key={idx}>{letter}</Letter>
       ))}
     </div>
   );
 }
-export default MainRow;
+
+export default LetterRow;
