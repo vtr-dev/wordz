@@ -7,16 +7,17 @@ type LetterProps = {
 
 function Letter({ children, status }: LetterProps) {
   const commonClasses =
-    'rounded-lg w-12 h-12 flex justify-center items-center box-border uppercase bg-transparent border-[0.125em] border-[#4C4347] font-bold text-xl text-white';
+    'rounded-lg w-14 h-14 flex justify-center items-center box-border uppercase border-[0.125em] border-[#615458] font-bold text-xl text-white';
 
   let classNames = commonClasses;
 
   if (status === 'active') {
-    classNames += ' bg-transparent';
+    classNames +=
+      ' bg-transparent text-[#6E5C62] border-[0.2em] border-[#4C4347]';
   } else if (status === 'done') {
-    classNames += ' bg-green-300 text-black';
+    classNames += ' bg-[#312A2C]';
   } else if (status === 'inactive') {
-    classNames += ' bg-[#4C4347] text-[#4C4347]';
+    classNames += ' bg-[#615458] text-[#615458]';
   }
 
   return <span className={classNames}>{children}</span>;
