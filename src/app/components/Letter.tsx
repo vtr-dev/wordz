@@ -7,7 +7,7 @@ type LetterProps = {
 
 function Letter({ children, status }: LetterProps) {
   const commonClasses =
-    'rounded-lg w-14 h-14 flex justify-center items-center box-border uppercase border-[0.125em] border-[#615458] font-bold text-xl text-white';
+    'rounded-lg w-14 h-14 flex justify-center items-center box-border uppercase font-bold text-xl ';
 
   let classNames = commonClasses;
 
@@ -15,9 +15,10 @@ function Letter({ children, status }: LetterProps) {
     classNames +=
       ' bg-transparent text-[#6E5C62] border-[0.2em] border-[#4C4347]';
   } else if (status === 'done') {
-    classNames += ' bg-[#312A2C]';
+    classNames += ' bg-[#312A2C] text-white border-[0.125em] border-[#615458]';
   } else if (status === 'inactive') {
-    classNames += ' bg-[#615458] text-[#615458]';
+    classNames +=
+      ' bg-[#615458] text-[#615458] border-[0.125em] border-[#615458]';
   }
 
   return <span className={classNames}>{children}</span>;
