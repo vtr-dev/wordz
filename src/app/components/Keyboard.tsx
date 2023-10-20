@@ -8,6 +8,10 @@ function Keyboard() {
   const { sharedState, setSharedState } = useSharedState();
 
   const handleEnterClick = () => {
+    if (sharedState.activeRow === 5) {
+      // validate row
+      return;
+    }
     setSharedState({ ...sharedState, activeRow: sharedState.activeRow + 1 });
   };
 

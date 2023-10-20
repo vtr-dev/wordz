@@ -4,17 +4,19 @@ import Letter from './Letter';
 
 function LetterRow({
   children,
-  active,
+  status,
 }: {
   children?: React.ReactNode;
-  active?: boolean;
+  status?: string;
 }) {
   const letterArray = typeof children === 'string' ? children.split('') : [];
 
   return (
-    <div className={`flex${active ? ' flex-row gap-1' : ''}`}>
+    <div className={'flex flex-row gap-1'}>
       {letterArray.map((letter, idx) => (
-        <Letter key={idx}>{letter}</Letter>
+        <Letter status={status} key={idx}>
+          {letter}
+        </Letter>
       ))}
     </div>
   );
