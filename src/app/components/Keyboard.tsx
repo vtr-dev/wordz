@@ -24,6 +24,12 @@ function Keyboard() {
     if (letter === 'DEL') {
       return;
     }
+
+    setSharedState({
+      ...sharedState,
+      letterPressed: letter,
+      activeLetter: sharedState.activeLetter + 1,
+    });
   };
 
   return (
