@@ -1,3 +1,4 @@
+import { removeAccents } from '@/utils/removeAccents';
 import React from 'react';
 
 type LetterProps = {
@@ -31,9 +32,9 @@ function Letter({
     }
   } else if (status === 'done') {
     classNames += ` ${
-      letter === (children as string).toLowerCase()
+      removeAccents(letter) === (children as string).toLowerCase()
         ? 'bg-[#3AA394]'
-        : word.includes((children as string).toLowerCase())
+        : removeAccents(word).includes((children as string).toLowerCase())
         ? 'bg-[#D3AD69]'
         : 'bg-[#312A2C]'
     } text-white border-[0.125em] border-[#615458]`;
@@ -44,7 +45,10 @@ function Letter({
 
   return (
     <span onClick={onClick} className={classNames}>
-      {children}
+      {(children as string).toLowerCase() ===
+      removeAccents(letter?.toLowerCase())
+        ? letter?.toUpperCase()
+        : children}
     </span>
   );
 }

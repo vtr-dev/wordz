@@ -4,9 +4,14 @@ import { keys } from '@/utils/keys';
 import Key from './Key';
 import { useSharedState } from './SharedStateProvider';
 import { words } from '@/utils/words';
+import { removeAccents } from '@/utils/removeAccents';
 
+const wordsWithoutAccents = words.map((word) =>
+  removeAccents(word.toLowerCase()),
+);
 function Keyboard() {
   const {
+    gameWord,
     matrix,
     activeRow,
     activeCol,
@@ -16,11 +21,26 @@ function Keyboard() {
   } = useSharedState();
 
   const handleEnterClick = () => {
-    if (!words.includes(matrix[activeRow].join('').toLowerCase())) {
-      console.log(matrix[activeRow].join('').toLowerCase());
+    if (matrix[activeRow].join('').length < 5) {
+      alert('A palavra deve ter 5 letras!');
       return;
     }
-    if (activeRow === 5) return;
+
+    if (
+      !wordsWithoutAccents.includes(matrix[activeRow].join('').toLowerCase())
+    ) {
+      alert('A palavra não existe!');
+      return;
+    }
+
+    if (
+      matrix[activeRow].join('').toLowerCase() === removeAccents(gameWord[0])
+    ) {
+      updateActiveRow(activeRow + 1);
+      alert('Parabéns, você acertou!');
+      return;
+    }
+
     updateActiveRow(activeRow + 1);
     updateActiveCol(0);
   };

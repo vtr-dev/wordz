@@ -2,16 +2,16 @@
 
 import { useEffect, useState } from 'react';
 import { useSharedState } from './SharedStateProvider';
-import { words } from '@/utils/words';
 import Letter from './Letter';
 import { getRowStatus } from '@/utils/getRowStatus';
 
-function Content() {
-  const { matrix, activeRow, activeCol, updateActiveCol } = useSharedState();
+function Content({ id }: { id: number }) {
+  const { gameWord, matrix, activeRow, activeCol, updateActiveCol } =
+    useSharedState();
   const [word, setWord] = useState('');
 
   useEffect(() => {
-    setWord(words[Math.floor(Math.random() * words.length)]);
+    setWord(gameWord[id]);
   }, []);
 
   const handleLetterClick = (newCol: number) => {
@@ -22,7 +22,7 @@ function Content() {
   };
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-1">
       {matrix.map((row, i) => (
         <div key={i} className={'flex flex-row gap-1'}>
           {row.map((letter, j) => (
