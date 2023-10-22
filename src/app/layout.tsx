@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import Header from './components/Header';
 import Keyboard from './components/Keyboard';
-import { SharedProvider } from './components/SharedContext';
+import { SharedStateProvider } from './components/SharedStateProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,13 +21,13 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div className="flex-col justify-center items-center bg-primary-gray w-full h-screen">
-          <SharedProvider>
+          <SharedStateProvider>
             <Header />
             <div className="flex justify-center items-center h-[65%]">
               {children}
             </div>
             <Keyboard />
-          </SharedProvider>
+          </SharedStateProvider>
         </div>
       </body>
     </html>

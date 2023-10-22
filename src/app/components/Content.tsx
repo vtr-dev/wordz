@@ -1,32 +1,47 @@
 'use client';
 
-import { words } from '@/utils/words';
-import LetterRow from './LetterRow';
 import { useEffect, useState } from 'react';
-import { useSharedState } from './SharedContext';
+import { useSharedState } from './SharedStateProvider';
+import { words } from '@/utils/words';
+import Letter from './Letter';
 import { getRowStatus } from '@/utils/getRowStatus';
 
-function Main() {
+function Content() {
+  const { matrix, activeRow, activeCol, updateActiveCol } = useSharedState();
   const [word, setWord] = useState('');
-  const { sharedState } = useSharedState();
-  const { activeRow } = sharedState;
-  const maxRows = 6; // ou outra quantidade desejada
 
   useEffect(() => {
     setWord(words[Math.floor(Math.random() * words.length)]);
   }, []);
 
-  const rows = Array.from({ length: maxRows }, (_, index) => index);
+  const handleLetterClick = (newCol: number) => {
+    return () => {
+      // Atualiza a coluna ativa
+      updateActiveCol(newCol);
+    };
+  };
 
   return (
     <div className="flex flex-col gap-2">
-      {rows.map((rowNumber) => (
-        <LetterRow key={rowNumber} status={getRowStatus(rowNumber, activeRow)}>
-          {word}
-        </LetterRow>
+      {matrix.map((row, i) => (
+        <div key={i} className={'flex flex-row gap-1'}>
+          {row.map((letter, j) => (
+            <Letter
+              key={j}
+              id={j}
+              letter={word[j]}
+              word={word}
+              active={activeCol}
+              status={getRowStatus(i, activeRow)}
+              onClick={handleLetterClick(j)}
+            >
+              {letter}
+            </Letter>
+          ))}
+        </div>
       ))}
     </div>
   );
 }
 
-export default Main;
+export default Content;

@@ -2,17 +2,27 @@
 
 import { keys } from '@/utils/keys';
 import Key from './Key';
-import { useSharedState } from './SharedContext';
+import { useSharedState } from './SharedStateProvider';
+import { words } from '@/utils/words';
 
 function Keyboard() {
-  const { sharedState, setSharedState } = useSharedState();
+  const {
+    matrix,
+    activeRow,
+    activeCol,
+    updateMatrix,
+    updateActiveRow,
+    updateActiveCol,
+  } = useSharedState();
 
   const handleEnterClick = () => {
-    if (sharedState.activeRow === 5) {
-      // validate row
+    if (!words.includes(matrix[activeRow].join('').toLowerCase())) {
+      console.log(matrix[activeRow].join('').toLowerCase());
       return;
     }
-    setSharedState({ ...sharedState, activeRow: sharedState.activeRow + 1 });
+    if (activeRow === 5) return;
+    updateActiveRow(activeRow + 1);
+    updateActiveCol(0);
   };
 
   const handleClick = (letter: string) => {
@@ -22,14 +32,36 @@ function Keyboard() {
     }
 
     if (letter === 'DEL') {
+      // Atualiza a matriz (substitui por uma nova matriz)
+      const newMatrix = [...matrix];
+
+      newMatrix[activeRow][activeCol] = '';
+
+      updateMatrix(newMatrix); // Atualiza a matriz compartilhada
+
+      if (activeCol === 0) return;
+
+      updateActiveCol(activeCol - 1);
       return;
     }
 
-    setSharedState({
-      ...sharedState,
-      letterPressed: letter,
-      activeLetter: sharedState.activeLetter + 1,
-    });
+    if (activeCol === 4) {
+      // Atualiza a matriz (substitui por uma nova matriz)
+      const newMatrix = [...matrix];
+
+      newMatrix[activeRow][activeCol] = letter;
+
+      updateMatrix(newMatrix); // Atualiza a matriz compartilhada
+      return;
+    }
+
+    // Atualiza a matriz (substitui por uma nova matriz)
+    const newMatrix = [...matrix];
+
+    newMatrix[activeRow][activeCol] = letter;
+
+    updateMatrix(newMatrix); // Atualiza a matriz compartilhada
+    updateActiveCol(activeCol + 1);
   };
 
   return (

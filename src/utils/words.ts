@@ -53,6 +53,8 @@ export const words = [
   'detém',
   'ânimo',
   'ápice',
+  'veias',
+  'junho',
   'ainda',
   'ânsia',
   'ceder',
