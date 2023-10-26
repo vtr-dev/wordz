@@ -6,7 +6,7 @@ import { useSharedState } from './SharedStateProvider';
 import { words } from '@/utils/words';
 import { removeAccents } from '@/utils/removeAccents';
 
-const wordsWithoutAccents = words.map((word) =>
+export const wordsWithoutAccents = words.map((word) =>
   removeAccents(word.toLowerCase()),
 );
 function Keyboard() {
@@ -18,18 +18,22 @@ function Keyboard() {
     updateMatrix,
     updateActiveRow,
     updateActiveCol,
+    updateMessage,
+    updateMessageActive,
   } = useSharedState();
 
   const handleEnterClick = () => {
     if (matrix[activeRow].join('').length < 5) {
-      alert('A palavra deve ter 5 letras!');
+      updateMessage('A palavra deve ter 5 letras!');
+      updateMessageActive(true);
       return;
     }
 
     if (
       !wordsWithoutAccents.includes(matrix[activeRow].join('').toLowerCase())
     ) {
-      alert('A palavra não existe!');
+      updateMessage('A palavra não existe!');
+      updateMessageActive(true);
       return;
     }
 
@@ -51,7 +55,9 @@ function Keyboard() {
       return;
     }
 
-    if (letter === 'DEL') {
+    if (letter === 'DEL' || letter === 'BACKSPACE') {
+      updateMessageActive(false);
+
       // Atualiza a matriz (substitui por uma nova matriz)
       const newMatrix = [...matrix];
 
@@ -62,8 +68,11 @@ function Keyboard() {
       if (activeCol === 0) return;
 
       updateActiveCol(activeCol - 1);
+
       return;
     }
+
+    updateMessageActive(false);
 
     if (activeCol === 4) {
       // Atualiza a matriz (substitui por uma nova matriz)
