@@ -7,10 +7,14 @@ interface SharedState {
   matrix: string[][];
   activeRow: number;
   activeCol: number;
+  message: string;
+  messageActive: boolean;
   updateGameWord: (newGameWord: string[]) => void;
   updateMatrix: (newMatrix: string[][]) => void;
   updateActiveRow: (newActiveRow: number) => void;
   updateActiveCol: (newActiveCol: number) => void;
+  updateMessage: (newMessage: string) => void;
+  updateMessageActive: (newMessageActive: boolean) => void;
 }
 
 const SharedStateContext = createContext<SharedState>({
@@ -18,10 +22,14 @@ const SharedStateContext = createContext<SharedState>({
   matrix: [],
   activeRow: 0,
   activeCol: 0,
+  message: '',
+  messageActive: false,
   updateGameWord: () => {},
   updateMatrix: () => {},
   updateActiveRow: () => {},
   updateActiveCol: () => {},
+  updateMessage: () => {},
+  updateMessageActive: () => {},
 });
 
 const getRandWord = () => words[Math.floor(Math.random() * words.length)];
@@ -34,12 +42,17 @@ export const SharedStateProvider = ({ children }: { children: ReactNode }) => {
   const [matrix, setMatrix] = useState(initialMatrix);
   const [activeRow, setActiveRow] = useState(0);
   const [activeCol, setActiveCol] = useState(0);
+  const [message, setMessage] = useState('');
+  const [messageActive, setMessageActive] = useState(false);
 
   // Funções para atualizar o estado
   const updateGameWord = (newGameWord: string[]) => setGameWord(newGameWord);
   const updateMatrix = (newMatrix: string[][]) => setMatrix(newMatrix);
   const updateActiveRow = (newActiveRow: number) => setActiveRow(newActiveRow);
   const updateActiveCol = (newActiveCol: number) => setActiveCol(newActiveCol);
+  const updateMessage = (newMessage: string) => setMessage(newMessage);
+  const updateMessageActive = (newMessageActive: boolean) =>
+    setMessageActive(newMessageActive);
 
   return (
     <SharedStateContext.Provider
@@ -48,10 +61,14 @@ export const SharedStateProvider = ({ children }: { children: ReactNode }) => {
         matrix,
         activeRow,
         activeCol,
+        message,
+        messageActive,
         updateGameWord,
         updateMatrix,
         updateActiveRow,
         updateActiveCol,
+        updateMessage,
+        updateMessageActive,
       }}
     >
       {children}

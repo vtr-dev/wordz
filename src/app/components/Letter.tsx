@@ -21,7 +21,7 @@ function Letter({
   onClick,
 }: LetterProps) {
   const commonClasses =
-    'rounded-lg w-14 h-14 flex justify-center items-center box-border uppercase font-bold text-xl cursor-pointer';
+    'rounded-lg w-[4rem] h-[4rem] min-h-[50px] flex justify-center items-center box-border uppercase font-bold text-xl cursor-pointer';
 
   let classNames = commonClasses;
 

@@ -11,7 +11,8 @@
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  height: 6vh;
+  align-items: center;
+  height: 10%;
   width: 100%;
 }
 

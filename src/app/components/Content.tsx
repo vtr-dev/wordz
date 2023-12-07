@@ -22,7 +22,7 @@ function Content({ id }: { id: number }) {
   };
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1 min-w-min">
       {matrix.map((row, i) => (
         <div key={i} className={'flex flex-row gap-1'}>
           {row.map((letter, j) => (
