@@ -25,7 +25,10 @@ export default function RootLayout({
           <SharedStateProvider>
             <Header />
             <Message />
-            <div className="flex justify-center items-center h-[60%]">
+            <div
+              id="main-content"
+              className="flex justify-center items-center h-[60%]"
+            >
               {children}
             </div>
             <Keyboard />

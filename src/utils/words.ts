@@ -501,6 +501,7 @@ export const words = [
   'virar',
   'nuvem',
   'pinho',
+  'fruta',
   'viram',
   'troca',
   'bruta',

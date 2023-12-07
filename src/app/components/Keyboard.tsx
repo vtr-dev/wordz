@@ -41,7 +41,14 @@ function Keyboard() {
       matrix[activeRow].join('').toLowerCase() === removeAccents(gameWord[0])
     ) {
       updateActiveRow(activeRow + 1);
-      alert('Parabéns, você acertou!');
+      updateMessage('Parabéns, você acertou!');
+      updateMessageActive(true);
+      return;
+    }
+
+    if (activeRow === 5) {
+      updateMessage(`Não foi dessa vez, a palavra era ${gameWord[0]}!`);
+      updateMessageActive(true);
       return;
     }
 
